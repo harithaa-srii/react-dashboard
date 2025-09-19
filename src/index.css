@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import "@fontsource/inter/index.css";
+
+:root {
+   font-family: 'Inter', sans-serif;
+
+}
+
+
+
+@layer components{
+  .topbar-container {
+  @apply flex flex-row w-[948px] h-[68px] px-7 py-5 border-b border-gray-200 justify-between;
+}
+ 
+}
+
+@layer utilities {
+  .dashboard-border {
+    border-color: var(--black-10, #1C1C1C1A);
+  }
+}
