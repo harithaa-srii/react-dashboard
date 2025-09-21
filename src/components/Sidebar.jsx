@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { menuSections, quickAccessItems } from "../data/menulist";
+import { quickAccessItems, menuSections } from "../data/Menulist";
 import cn from "classnames";
 import { useTheme } from "../context/ThemeContext";
 
