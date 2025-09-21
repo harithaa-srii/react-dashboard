@@ -193,8 +193,7 @@ export default function DashboardContent() {
           }`}
         >
           <div className="flex justify-between items-center">
-            <span className="text-green-600 font-bold">38.6%</span>
-            <span>Direct</span>
+            <span className="text-green-600 font-bold">Direct</span>
             <span
               className={`${
                 theme === "dark" ? "text-gray-300" : "text-gray-700"
