@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import DashboardPage from './pages/DashboardPage';
+import OrdersPage from './pages/OrdersPage';
 
 export default function App() {
   return (
@@ -21,6 +22,8 @@ export default function App() {
         <Route path="/corporate" element={<DashboardPage />} />
         <Route path="/blog" element={<DashboardPage />} />
         <Route path="/social" element={<DashboardPage />} />
+
+        <Route path="/orders" element={<OrdersPage />} />
 
         {/* Catch all fallback to /default */}
         <Route path="*" element={<Navigate to="/default" replace />} />

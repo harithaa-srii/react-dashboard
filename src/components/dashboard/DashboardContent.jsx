@@ -1,42 +1,37 @@
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 import StatCard from "./StatCard";
 import Card from "./Card";
-import OrdersTable from "./OrdersTable";
 import LoaderBackdrop from "./LoaderBackdrop";
-import ordersData from "../../data/OrdersData";
 import ProjectionsVsActualsChart from "./charts/ProjectionsVsActuals";
 import TotalSalesDonutChart from "./charts/TotalSales";
 import RevenueLineChart from "./charts/RevenueLineChart";
 import RevenueByLocation from "./charts/RevenueByLocation";
+import OrdersTable from "./OrdersTable";
 
 export default function DashboardContent() {
   const { theme } = useTheme();
-  const [view, setView] = useState("dashboard");
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const handleOrderClick = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      setView("orders");
+      navigate("/orders");
     }, 1000);
   };
 
-  if (view === "orders") {
-    return (
-      <div className={`relative min-h-[70vh] p-6 max-w-[1200px] mx-auto transition-colors ${theme === "dark" ? "bg-[#181924]" : "bg-white"}`}>
-        {loading && <LoaderBackdrop />}
-        <OrdersTable data={ordersData} />
-      </div>
-    );
-  }
-
   return (
-    <div className={`p-6 grid grid-cols-5 gap-6 max-w-[1200px] mx-auto relative min-h-[70vh] transition-colors ${theme === "dark" ? "bg-[#181924]" : "bg-white"}`}>
+    <div
+      className={`p-6 grid grid-cols-5 gap-6 max-w-[1200px] mx-auto relative min-h-[70vh] transition-colors ${
+        theme === "dark" ? "bg-[#181924]" : "bg-white"
+      }`}
+    >
       {loading && <LoaderBackdrop />}
 
-      {/* 2x2 Stats grid (Rows 1-2, Cols 1-2) */}
+      {/* 2x2 Stats grid */}
       <div className="col-span-2 row-span-2 grid grid-cols-2 grid-rows-2 gap-6">
         <StatCard label="Customers" value="3,781" change="+11.01%" positive highlight />
         <StatCard label="Orders" value="1,219" change="-0.03%" positive={false} onClick={handleOrderClick} clickable />
@@ -52,7 +47,7 @@ export default function DashboardContent() {
         <ProjectionsVsActualsChart />
       </Card>
 
-      {/* Row 2 */}
+      {/* Revenue line chart and info */}
       <Card className="col-span-3 min-h-[170px] rounded-[20px] shadow mt-0 transition-colors">
         <div className={`flex items-center mb-2 text-xs px-6 pt-6 ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}>
           <span>Revenue</span>
@@ -70,6 +65,7 @@ export default function DashboardContent() {
         </div>
       </Card>
 
+      {/* Revenue by location */}
       <Card className="col-span-2 min-h-[170px] rounded-[20px] shadow mt-0 px-6 pt-6 transition-colors">
         <span className={`text-sm font-semibold mb-3 ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>
           Revenue by Location
@@ -77,7 +73,7 @@ export default function DashboardContent() {
         <RevenueByLocation />
       </Card>
 
-      {/* Row 3 */}
+      {/* Top Selling Products table */}
       <Card className="col-span-3 min-h-[170px] rounded-[20px] shadow mt-0 overflow-x-auto px-6 pt-6 transition-colors">
         <span className={`text-sm font-semibold mb-3 ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>
           Top Selling Products
@@ -106,7 +102,6 @@ export default function DashboardContent() {
             </tr>
             <tr>
               <td className="px-3 py-1">Half Sleeve Shirt</td>
-              <td className="px-3 py-1 text-right">$39.99</td>
               <td className="px-3 py-1 text-right">64</td>
               <td className="px-3 py-1 text-right">$2,559.36</td>
             </tr>
@@ -126,6 +121,7 @@ export default function DashboardContent() {
         </table>
       </Card>
 
+      {/* Total sales donut chart */}
       <Card className="col-span-2 min-h-[170px] rounded-[20px] shadow mt-0 px-6 pt-6 transition-colors">
         <span className={`text-sm font-semibold mb-2 ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>
           Total Sales
