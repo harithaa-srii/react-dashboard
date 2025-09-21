@@ -1,4 +1,4 @@
-## ByeWind React Dashboard
+## React Dashboard
 
 A fully responsive React-based admin dashboard built to replicate provided Figma designs with **pixel-perfect accuracy**. The dashboard supports real-time data visualization, interactive components, and both dark and light themes.
 ## Appendix
@@ -22,7 +22,7 @@ Any additional information goes here
 8. **Dependencies**
 ## Overview
 
-ByeWind React Dashboard is a modern, production-quality dashboard designed for enterprise use. The project emphasizes:
+ React Dashboard is a modern, production-quality dashboard designed for enterprise use. The project emphasizes:
 
 **Pixel-perfect implementation**: All UI components match Figma designs exactly.
 
