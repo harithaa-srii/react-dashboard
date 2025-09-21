@@ -4,6 +4,10 @@ import Card from "./Card";
 import OrdersTable from "./OrdersTable";
 import LoaderBackdrop from "./LoaderBackdrop";
 import ordersData from "../../data/OrdersData";
+import ProjectionsVsActualsChart from "./charts/ProjectionsVsActuals";
+import TotalSalesDonutChart from "./charts/TotalSales";
+import RevenueLineChart from "./charts/RevenueLineChart";
+import RevenueByLocation from "./charts/RevenueByLocation";
 
 export default function DashboardContent() {
   const [view, setView] = useState("dashboard");
@@ -32,7 +36,13 @@ export default function DashboardContent() {
 
       {/* 2x2 Stats grid (Rows 1-2, Cols 1-2) */}
       <div className="col-span-2 row-span-2 grid grid-cols-2 grid-rows-2 gap-6">
-        <StatCard label="Customers" value="3,781" change="+11.01%" positive highlight />
+        <StatCard
+          label="Customers"
+          value="3,781"
+          change="+11.01%"
+          positive
+          highlight
+        />
         <StatCard
           label="Orders"
           value="1,219"
@@ -42,13 +52,21 @@ export default function DashboardContent() {
           clickable
         />
         <StatCard label="Revenue" value="$695" change="+15.03%" positive />
-        <StatCard label="Growth" value="30.1%" change="+6.08%" positive highlight />
+        <StatCard
+          label="Growth"
+          value="30.1%"
+          change="+6.08%"
+          positive
+          highlight
+        />
       </div>
 
       {/* Projections vs Actuals */}
       <Card className="col-span-3 row-span-2 flex flex-col justify-center min-h-[270px] rounded-[20px] shadow bg-white">
-        <span className="text-base font-semibold text-gray-700 mb-4">Projections vs Actuals</span>
-        <div className="w-full h-[180px] bg-gray-100 rounded" />
+        <span className="text-base font-semibold text-gray-700 mb-4">
+          Projections vs Actuals
+        </span>
+        <ProjectionsVsActualsChart />
       </Card>
 
       {/* Row 2 */}
@@ -56,39 +74,31 @@ export default function DashboardContent() {
         <div className="flex items-center mb-2 text-xs text-gray-500 px-6 pt-6">
           <span>Revenue</span>
           <span className="mx-3">|</span>
-          <span className="font-semibold text-gray-900">Current Week $58,211</span>
+          <span className="font-semibold text-gray-900">
+            Current Week $58,211
+          </span>
           <span className="mx-2">|</span>
-          <span className="font-semibold text-gray-900">Previous Week $68,768</span>
+          <span className="font-semibold text-gray-900">
+            Previous Week $68,768
+          </span>
         </div>
-        <div className="w-full h-32 bg-gray-100 rounded mb-2 px-6" />
+        <div className="w-full h-32 mb-2 px-6">
+          <RevenueLineChart />
+        </div>
       </Card>
 
       <Card className="col-span-2 min-h-[170px] rounded-[20px] shadow bg-white mt-0 px-6 pt-6">
-        <span className="text-sm font-semibold text-gray-700 mb-3">Revenue by Location</span>
-        <div className="w-full h-10 bg-gray-100 rounded mb-4" />
-        <div className="mt-2 text-xs text-gray-600 space-y-2">
-          <div className="flex justify-between">
-            <span>New York</span>
-            <span>72K</span>
-          </div>
-          <div className="flex justify-between">
-            <span>San Francisco</span>
-            <span>59K</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Sydney</span>
-            <span>25K</span>
-          </div>
-          <div className="flex justify-between">
-            <span>Singapore</span>
-            <span>61K</span>
-          </div>
-        </div>
+        <span className="text-sm font-semibold text-gray-700 mb-3">
+          Revenue by Location
+        </span>
+        <RevenueByLocation />
       </Card>
 
       {/* Row 3 */}
       <Card className="col-span-3 min-h-[170px] rounded-[20px] shadow bg-white mt-0 overflow-x-auto px-6 pt-6">
-        <span className="text-sm font-semibold text-gray-700 mb-3">Top Selling Products</span>
+        <span className="text-sm font-semibold text-gray-700 mb-3">
+          Top Selling Products
+        </span>
         <table className="min-w-full text-xs text-gray-700">
           <thead>
             <tr className="bg-gray-50">
@@ -132,9 +142,14 @@ export default function DashboardContent() {
           </tbody>
         </table>
       </Card>
+
       <Card className="col-span-2 min-h-[170px] rounded-[20px] shadow bg-white mt-0 px-6 pt-6">
-        <span className="text-sm font-semibold text-gray-700 mb-2">Total Sales</span>
-        <div className="w-full h-24 bg-gray-100 rounded mb-3" />
+        <span className="text-sm font-semibold text-gray-700 mb-2">
+          Total Sales
+        </span>
+        <div className="w-full h-24 mb-3">
+          <TotalSalesDonutChart />
+        </div>
         <div className="flex flex-col gap-2 text-xs text-gray-600">
           <div className="flex justify-between items-center">
             <span className="text-green-600 font-bold">38.6%</span>
