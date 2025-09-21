@@ -1,15 +1,17 @@
-// src/pages/DashboardPage.jsx
-import Sidebar from '../components/Sidebar';
-import Topbar from '../components/Topbar';
+import Sidebar from "../components/Sidebar";
+import Topbar from "../components/topbar/Topbar";
+import DashboardContent from "../components/dashboard/DashboardContent";
+import RightPanel from "../components/RightPanels";
 
 export default function DashboardPage() {
   return (
     <div className="flex h-screen">
       <Sidebar />
-      <main className="flex-1 bg-gray-50">
+      <main className="flex-1">
         <Topbar />
-        {/* Your dashboard content here */}
+        <DashboardContent />
       </main>
+      <RightPanel />
     </div>
   );
 }
