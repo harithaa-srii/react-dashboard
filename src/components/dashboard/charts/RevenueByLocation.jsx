@@ -5,6 +5,7 @@ import {
   Geography,
   Marker,
 } from "react-simple-maps";
+import { useTheme } from "../../../context/ThemeContext";
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json";
 
@@ -16,6 +17,11 @@ const locations = [
 ];
 
 export default function RevenueByLocation() {
+  const { theme } = useTheme();
+  const mapBg = theme === "dark" ? "#23232e" : "#E9EBF6";
+  const markerFill = theme === "dark" ? "#fff" : "#000";
+  const textClass = theme === "dark" ? "text-gray-300" : "text-gray-700";
+
   return (
     <div className="p-4">
       <div className="mb-4">
@@ -32,7 +38,7 @@ export default function RevenueByLocation() {
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  fill="#E9EBF6"
+                  fill={mapBg}
                   stroke="#fff"
                   strokeWidth={0.5}
                 />
@@ -41,15 +47,15 @@ export default function RevenueByLocation() {
           </Geographies>
           {locations.map(({ name, coordinates }) => (
             <Marker key={name} coordinates={coordinates}>
-              <circle r={6} fill="#000" stroke="#fff" strokeWidth={2} />
+              <circle r={6} fill={markerFill} stroke="#fff" strokeWidth={2} />
             </Marker>
           ))}
         </ComposableMap>
       </div>
-      <div className="space-y-4 text-sm">
+      <div className={`space-y-4 text-sm ${textClass}`}>
         {locations.map(({ name, value }) => (
           <div key={name} className="flex flex-col">
-            <div className="flex justify-between text-gray-700 font-semibold mb-1">
+            <div className="flex justify-between font-semibold mb-1">
               <span>{name}</span>
               <span>{value}K</span>
             </div>

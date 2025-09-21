@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { menuSections, quickAccessItems } from "../data/menulist";
 import cn from "classnames";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Sidebar() {
   const { pathname } = useLocation();
@@ -47,7 +48,11 @@ export default function Sidebar() {
           viewBox="0 0 24 24"
           aria-hidden="true"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
         </svg>
       </button>
 
@@ -127,8 +132,8 @@ export default function Sidebar() {
                       className={cn(
                         "flex items-center px-3 py-1 rounded-r-2xl cursor-pointer select-none transition-colors duration-300 ease-in-out",
                         isActiveMain
-                          ? "font-semibold text-black bg-gray-100 border-l-4 border-black"
-                          : "text-gray-700 font-normal border-l-4 border-transparent hover:bg-gray-100 hover:text-black"
+                          ? "font-semibold text-black bg-gray-100 border-l-4 border-black dark:sidebar-active dark:border-transparent"
+                          : "text-gray-700 font-normal border-l-4 border-transparent hover:bg-gray-100 hover:text-black dark:hover:bg-gray-700"
                       )}
                       onClick={() => hasChildren && toggleExpand(item.id)}
                     >

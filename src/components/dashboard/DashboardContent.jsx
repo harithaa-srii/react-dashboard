@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTheme } from "../../context/ThemeContext";
 import StatCard from "./StatCard";
 import Card from "./Card";
 import OrdersTable from "./OrdersTable";
@@ -10,6 +11,7 @@ import RevenueLineChart from "./charts/RevenueLineChart";
 import RevenueByLocation from "./charts/RevenueByLocation";
 
 export default function DashboardContent() {
+  const { theme } = useTheme();
   const [view, setView] = useState("dashboard");
   const [loading, setLoading] = useState(false);
 
@@ -18,12 +20,12 @@ export default function DashboardContent() {
     setTimeout(() => {
       setLoading(false);
       setView("orders");
-    }, 1000); // Simulate loading delay (can replace with real API)
+    }, 1000);
   };
 
   if (view === "orders") {
     return (
-      <div className="relative min-h-[70vh] p-6 max-w-[1200px] mx-auto">
+      <div className={`relative min-h-[70vh] p-6 max-w-[1200px] mx-auto transition-colors ${theme === "dark" ? "bg-[#181924]" : "bg-white"}`}>
         {loading && <LoaderBackdrop />}
         <OrdersTable data={ordersData} />
       </div>
@@ -31,54 +33,35 @@ export default function DashboardContent() {
   }
 
   return (
-    <div className="p-6 grid grid-cols-5 gap-6 max-w-[1200px] mx-auto relative min-h-[70vh]">
+    <div className={`p-6 grid grid-cols-5 gap-6 max-w-[1200px] mx-auto relative min-h-[70vh] transition-colors ${theme === "dark" ? "bg-[#181924]" : "bg-white"}`}>
       {loading && <LoaderBackdrop />}
 
       {/* 2x2 Stats grid (Rows 1-2, Cols 1-2) */}
       <div className="col-span-2 row-span-2 grid grid-cols-2 grid-rows-2 gap-6">
-        <StatCard
-          label="Customers"
-          value="3,781"
-          change="+11.01%"
-          positive
-          highlight
-        />
-        <StatCard
-          label="Orders"
-          value="1,219"
-          change="-0.03%"
-          positive={false}
-          onClick={handleOrderClick}
-          clickable
-        />
+        <StatCard label="Customers" value="3,781" change="+11.01%" positive highlight />
+        <StatCard label="Orders" value="1,219" change="-0.03%" positive={false} onClick={handleOrderClick} clickable />
         <StatCard label="Revenue" value="$695" change="+15.03%" positive />
-        <StatCard
-          label="Growth"
-          value="30.1%"
-          change="+6.08%"
-          positive
-          highlight
-        />
+        <StatCard label="Growth" value="30.1%" change="+6.08%" positive highlight />
       </div>
 
       {/* Projections vs Actuals */}
-      <Card className="col-span-3 row-span-2 flex flex-col justify-center min-h-[270px] rounded-[20px] shadow bg-white">
-        <span className="text-base font-semibold text-gray-700 mb-4">
+      <Card className="col-span-3 row-span-2 flex flex-col justify-center min-h-[270px] rounded-[20px] shadow transition-colors">
+        <span className={`text-base font-semibold mb-4 ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>
           Projections vs Actuals
         </span>
         <ProjectionsVsActualsChart />
       </Card>
 
       {/* Row 2 */}
-      <Card className="col-span-3 min-h-[170px] rounded-[20px] shadow bg-white mt-0">
-        <div className="flex items-center mb-2 text-xs text-gray-500 px-6 pt-6">
+      <Card className="col-span-3 min-h-[170px] rounded-[20px] shadow mt-0 transition-colors">
+        <div className={`flex items-center mb-2 text-xs px-6 pt-6 ${theme === "dark" ? "text-gray-400" : "text-gray-500"}`}>
           <span>Revenue</span>
           <span className="mx-3">|</span>
-          <span className="font-semibold text-gray-900">
+          <span className={`font-semibold ${theme === "dark" ? "text-gray-300" : "text-gray-900"}`}>
             Current Week $58,211
           </span>
           <span className="mx-2">|</span>
-          <span className="font-semibold text-gray-900">
+          <span className={`font-semibold ${theme === "dark" ? "text-gray-300" : "text-gray-900"}`}>
             Previous Week $68,768
           </span>
         </div>
@@ -87,21 +70,21 @@ export default function DashboardContent() {
         </div>
       </Card>
 
-      <Card className="col-span-2 min-h-[170px] rounded-[20px] shadow bg-white mt-0 px-6 pt-6">
-        <span className="text-sm font-semibold text-gray-700 mb-3">
+      <Card className="col-span-2 min-h-[170px] rounded-[20px] shadow mt-0 px-6 pt-6 transition-colors">
+        <span className={`text-sm font-semibold mb-3 ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>
           Revenue by Location
         </span>
         <RevenueByLocation />
       </Card>
 
       {/* Row 3 */}
-      <Card className="col-span-3 min-h-[170px] rounded-[20px] shadow bg-white mt-0 overflow-x-auto px-6 pt-6">
-        <span className="text-sm font-semibold text-gray-700 mb-3">
+      <Card className="col-span-3 min-h-[170px] rounded-[20px] shadow mt-0 overflow-x-auto px-6 pt-6 transition-colors">
+        <span className={`text-sm font-semibold mb-3 ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>
           Top Selling Products
         </span>
-        <table className="min-w-full text-xs text-gray-700">
+        <table className={`min-w-full text-xs ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>
           <thead>
-            <tr className="bg-gray-50">
+            <tr className={theme === "dark" ? "bg-[#1f202a]" : "bg-gray-50"}>
               <th className="px-3 py-2 text-left font-semibold">Name</th>
               <th className="px-3 py-2 text-right font-semibold">Price</th>
               <th className="px-3 py-2 text-right font-semibold">Quantity</th>
@@ -143,18 +126,18 @@ export default function DashboardContent() {
         </table>
       </Card>
 
-      <Card className="col-span-2 min-h-[170px] rounded-[20px] shadow bg-white mt-0 px-6 pt-6">
-        <span className="text-sm font-semibold text-gray-700 mb-2">
+      <Card className="col-span-2 min-h-[170px] rounded-[20px] shadow mt-0 px-6 pt-6 transition-colors">
+        <span className={`text-sm font-semibold mb-2 ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>
           Total Sales
         </span>
         <div className="w-full h-24 mb-3">
           <TotalSalesDonutChart />
         </div>
-        <div className="flex flex-col gap-2 text-xs text-gray-600">
+        <div className={`flex flex-col gap-2 text-xs ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
           <div className="flex justify-between items-center">
             <span className="text-green-600 font-bold">38.6%</span>
             <span>Direct</span>
-            <span className="text-gray-700">$300.56</span>
+            <span className={` ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>$300.56</span>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-blue-600">Affiliate</span>

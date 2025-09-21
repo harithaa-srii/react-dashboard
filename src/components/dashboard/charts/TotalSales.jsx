@@ -6,6 +6,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useTheme } from "../../../context/ThemeContext";
 
 const data = [
   { name: "Direct", value: 300.56, color: "#000000" },
@@ -31,6 +32,8 @@ const renderCustomizedLabel = ({
 };
 
 export default function TotalSalesDonutChart() {
+  const { theme } = useTheme();
+
   return (
     <ResponsiveContainer width="100%" height={96}>
       <PieChart>
@@ -50,8 +53,15 @@ export default function TotalSalesDonutChart() {
         </Pie>
         <Tooltip 
           formatter={(value) => `$${value.toFixed(2)}`} 
-          contentStyle={{ fontSize: 12, borderRadius: 8, padding: 6 }}
-          cursor={{ fill: "rgba(0,0,0,0.1)" }}
+          contentStyle={{
+            fontSize: 12,
+            borderRadius: 8,
+            padding: 6,
+            backgroundColor: theme === "dark" ? "#1C1F3C" : "#FFF",
+            borderColor: theme === "dark" ? "#444" : "#DDD",
+            color: theme === "dark" ? "#eee" : "#333",
+          }}
+          cursor={{ fill: theme === "dark" ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)" }}
         />
       </PieChart>
     </ResponsiveContainer>

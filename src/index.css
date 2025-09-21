@@ -2,23 +2,32 @@
 @import "@fontsource/inter/index.css";
 
 :root {
-   font-family: 'Inter', sans-serif;
-
+  font-family: 'Inter', sans-serif;
 }
 
+/* Light mode base */
+body {
+  background-color: white;
+  color: #080b12; /* Tailwind gray-900 */
+}
 
-
-@layer components{
+/* Components */
+@layer components {
   .topbar-container {
-  @apply flex flex-row w-[948px] h-[68px] px-7 py-5 border-b border-gray-200 justify-between;
-}
+    @apply flex flex-row w-[948px] h-[68px] px-7 py-5 border-b border-gray-200 justify-between;
+    background-color: white;
+    color: #111827;
+  }
 
-.sidebar-toggle-button {
+  .sidebar-toggle-button {
     @apply fixed top-4 left-4 z-50 p-2 rounded-md bg-gray-100 text-gray-800 sm:hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black;
   }
 
   .sidebar-container {
     @apply bg-white border-r border-gray-200 flex flex-col h-screen pt-3 pb-5 px-3 font-sans overflow-y-auto fixed top-0 left-0 bottom-0 z-40 transform transition-transform duration-300 ease-in-out w-full max-w-xs sm:w-56 md:w-64 lg:w-72;
+    background-color: white;
+    border-color: #E5E7EB;
+    color: #111827;
   }
 
   .sidebar-open {
@@ -29,9 +38,12 @@
     @apply -translate-x-full;
   }
 
- 
+  .card {
+    @apply bg-white text-gray-900 shadow rounded;
+  }
 }
 
+/* Utilities */
 @layer utilities {
   .dashboard-border {
     border-color: var(--black-10, #1C1C1C1A);
@@ -48,5 +60,91 @@
   .max-w-55 {
     max-width: 220px;
   }
-
 }
+
+/* Dark mode overrides */
+.dark body {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.dark .topbar-container {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #333333 !important;
+}
+
+.dark .sidebar-toggle-button {
+  background-color: #222222 !important;
+  color: #ffffff !important;
+}
+
+.dark .sidebar-container {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #333333 !important;
+}
+
+.dark .sidebar-container a,
+.dark .sidebar-container span,
+.dark .sidebar-container button {
+  color: #ffffff !important;
+}
+
+.dark .sidebar-container svg {
+  stroke: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+.dark .sidebar-container .text-gray-400,
+.dark .sidebar-container .text-gray-600,
+.dark .sidebar-container .text-gray-700 {
+  color: #bbbbbb !important;
+}
+
+.dark .sidebar-container .text-gray-900,
+.dark .sidebar-container .text-black {
+  color: #ffffff !important;
+}
+
+.dark .sidebar-container .bg-gray-100:hover {
+  background-color: #222222 !important;
+}
+
+.dark .sidebar-container .bg-gray-50 {
+  background-color: #121212 !important;
+}
+
+.dark .sidebar-container .hover\:bg-gray-50:hover {
+  background-color: #222222 !important;
+}
+
+.dark .card {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark .dashboard-border {
+  border-color: #444444 !important;
+}
+
+.dark .sidebar-container .sidebar-active {
+  background-color: #343843 !important;        
+  color: #fff !important;
+  position: relative;
+  border-radius: 1.5rem !important;             
+}
+
+.dark .sidebar-container .sidebar-active::before {
+  content: "";
+  position: absolute;
+  left: 0.35rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 5px;
+  border-radius: 2rem;
+  background: #b4bcff;
+  display: block;
+}
+
