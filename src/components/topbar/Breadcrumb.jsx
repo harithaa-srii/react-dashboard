@@ -1,12 +1,13 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { menuSections } from "../../data/menulist";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function Breadcrumb() {
+  const { theme } = useTheme();
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter(Boolean);
 
-  // Get parent section name
   const getSectionName = (parentId) => {
     for (const section of menuSections) {
       if (section.items.some(item => item.id === parentId)) {
@@ -16,7 +17,6 @@ export default function Breadcrumb() {
     return "Dashboards";
   };
 
-  // Get menu item by id
   const getMenuItem = (parentId) => {
     for (const section of menuSections) {
       const item = section.items.find(item => item.id === parentId);
@@ -29,16 +29,22 @@ export default function Breadcrumb() {
   const parentItem = getMenuItem(pathnames[0]);
   const childItem = parentItem?.children?.find(child => child.id === pathnames[1]);
 
+  // Define color classes based on theme
+  const prefixClass = theme === "dark" ? "text-gray-400" : "text-gray-400";
+  const linkClass = theme === "dark" ? "text-gray-400 hover:underline" : "text-gray-600 hover:underline";
+  const currentClass = theme === "dark" ? "text-gray-200 font-semibold" : "text-gray-900 font-semibold";
+  const separatorClass = theme === "dark" ? "text-gray-300" : "text-gray-300";
+
   return (
-    <nav className="flex items-center space-x-2 font-sans text-sm">
-      <span className="text-gray-400">{sectionPrefix}</span>
+    <nav className="flex items-center space-x-2 font-sans text-sm whitespace-nowrap overflow-x-auto">
+      <span className={prefixClass}>{sectionPrefix}</span>
       {parentItem && (
         <>
-          <span className="mx-1 text-gray-300">/</span>
+          <span className={separatorClass}>/</span>
           {pathnames.length === 1 ? (
-            <span className="text-gray-900 font-semibold">{parentItem.name}</span>
+            <span className={currentClass}>{parentItem.name}</span>
           ) : (
-            <Link to={`/${parentItem.id}`} className="text-gray-400 hover:underline">
+            <Link to={`/${parentItem.id}`} className={linkClass}>
               {parentItem.name}
             </Link>
           )}
@@ -46,8 +52,8 @@ export default function Breadcrumb() {
       )}
       {childItem && (
         <>
-          <span className="mx-1 text-gray-300">/</span>
-          <span className="text-gray-900 font-semibold">{childItem.name}</span>
+          <span className={separatorClass}>/</span>
+          <span className={currentClass}>{childItem.name}</span>
         </>
       )}
     </nav>

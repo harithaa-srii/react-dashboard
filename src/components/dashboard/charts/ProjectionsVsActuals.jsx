@@ -37,13 +37,19 @@ export default function ProjectionsVsActualsChart() {
         />
         <XAxis
           dataKey="month"
-          tick={{ fill: theme === "dark" ? "#A2A2A2" : "#A2A2A2", fontSize: 12 }}
+          tick={{
+            fill: theme === "dark" ? "#A2A2A2" : "#A2A2A2",
+            fontSize: 12,
+          }}
           axisLine={{ stroke: theme === "dark" ? "#444" : "#E9EBF6" }}
           tickLine={false}
           padding={{ left: 15, right: 15 }}
         />
         <YAxis
-          tick={{ fill: theme === "dark" ? "#A2A2A2" : "#A2A2A2", fontSize: 12 }}
+          tick={{
+            fill: theme === "dark" ? "#A2A2A2" : "#A2A2A2",
+            fontSize: 12,
+          }}
           axisLine={false}
           tickLine={false}
           tickFormatter={(value) => `${value}M`}
@@ -58,26 +64,29 @@ export default function ProjectionsVsActualsChart() {
             padding: "8px 12px",
             fontSize: 12,
           }}
-          cursor={{ fill: theme === "dark" ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)" }}
+          cursor={{
+            fill:
+              theme === "dark" ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
+          }}
         />
         <Legend
           verticalAlign="top"
           align="left"
           height={36}
-          iconType="circle"
-          wrapperStyle={{ paddingBottom: 8, color: theme === "dark" ? "#eee" : "#333" }}
-          formatter={(value) => (value === "actual" ? "Actual" : "Projection")}
+          wrapperStyle={{ display: "none" }}
         />
+
         <Bar
           dataKey="actual"
-          fill="#849CFF"
+          fill="#A8C5DA"
           radius={[6, 6, 0, 0]}
           stackId="a"
           maxBarSize={40}
         />
         <Bar
           dataKey="projection"
-          fill="#DAE7F4"
+          fill="#A8C5DA"
+          fillOpacity={0.5}
           radius={[6, 6, 0, 0]}
           stackId="a"
           maxBarSize={40}
