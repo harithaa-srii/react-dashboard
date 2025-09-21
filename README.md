@@ -125,10 +125,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 function App() {
   return (
     <Router>
-      {/* Sidebar navigation */}
       <Sidebar />
-
-      {/* Main dashboard content */}
       <DashboardContent />
     </Router>
   );
