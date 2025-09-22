@@ -3,7 +3,7 @@ const ordersData = [
   {
     id: "#CM9801",
     user: "Natali Craig",
-    avatar: "/user1.png",
+    avatar: "../user1.png",
     project: "Landing Page",
     address: "Meadow Lane Oakland",
     date: "Just now",
@@ -12,7 +12,7 @@ const ordersData = [
   {
     id: "#CM9802",
     user: "Drew Cano",
-    avatar: "/user2.png",
+    avatar: "../user2.png",
     project: "Client Project",
     address: "Bagwell Avenue Ocala",
     date: "1 hour ago",
@@ -21,7 +21,7 @@ const ordersData = [
   {
     id: "#CM9803",
     user: "Orlando Diggs",
-    avatar: "/user3.png",
+    avatar: "../user3.png",
     project: "Admin Dashboard",
     address: "Washburn Baton Rouge",
     date: "Yesterday",
@@ -30,7 +30,7 @@ const ordersData = [
   {
     id: "#CM9804",
     user: "Andi Lane",
-    avatar: "/user4.png",
+    avatar: "../user4.png",
     project: "App Landing Page",
     address: "Nest Lane Olivette",
     date: "Feb 2, 2023",
@@ -39,7 +39,7 @@ const ordersData = [
   {
     id: "#CM9805",
     user: "Kate Morrison",
-    avatar: "/user5.png",
+    avatar: "../user5.png",
     project: "CRM Admin pages",
     address: "Larry San Francisco",
     date: "A minute ago",
@@ -48,7 +48,7 @@ const ordersData = [
   {
     id: "#CM9806",
     user: "Koray Okumus",
-    avatar: "/user6.png",
+    avatar: "../user6.png",
     project: "Project X",
     address: "Unknown Address",
     date: "Today",
