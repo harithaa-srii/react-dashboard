@@ -67,7 +67,7 @@ export default function Sidebar() {
         {/* Logo & Name */}
         <div className="flex items-center mb-5 mt-1">
           <img
-            src="src/assets/ByeWind.png"
+            src="../public/ByeWind.png"
             alt="logo"
             className="rounded-sm mr-2"
           />
